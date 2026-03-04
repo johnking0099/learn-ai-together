@@ -14,7 +14,7 @@
 | **类型** | enum |
 | **可选值** | `auto` / `safetensors` / `pytorch` / `gguf` / `bitsandbytes` / `tensorizer` |
 | **默认值** | `auto` |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve meta-llama/Llama-3.1-8B --load-format safetensors
 | **说明** | 模型下载和加载目录。未设置时默认使用 HuggingFace 缓存目录（通常为 `~/.cache/huggingface`）。平台部署时通常指向共享存储路径 |
 | **类型** | string |
 | **默认值** | None（使用 HuggingFace 默认缓存目录） |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve meta-llama/Llama-3.1-8B --download-dir /data/models
 | **说明** | 加载模型时忽略的文件 glob 模式列表。可以过滤掉不需要的文件（如原始未转换的权重文件），减少加载时间和磁盘占用 |
 | **类型** | string |
 | **默认值** | `['original/**/*']` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve meta-llama/Llama-3.1-8B --ignore-patterns "*.bin" "original/**/*"
 | **说明** | 模型加载器的额外配置，以 JSON 格式传入。不同的 `--load-format` 支持不同的额外配置项，例如 tensorizer 格式需要指定序列化路径等 |
 | **类型** | string |
 | **默认值** | `{}` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve meta-llama/Llama-3.1-8B --load-format bitsandbytes --model-loader-ext
 | **说明** | PyTorch checkpoint 的设备映射位置。控制 `torch.load()` 时将张量映射到哪个设备。通常使用 `cpu` 以避免在加载阶段占用 GPU 显存 |
 | **类型** | string |
 | **默认值** | `cpu` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -100,7 +100,7 @@ vllm serve my-model --load-format pytorch --pt-load-map-location cpu
 | **类型** | enum |
 | **可选值** | `lazy` / `eager` / `torchao` |
 | **默认值** | `lazy` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -117,7 +117,7 @@ vllm serve meta-llama/Llama-3.1-70B --safetensors-load-strategy eager
 | **说明** | 模型权重加载时是否显示 tqdm 进度条。启用后可以在终端看到加载进度，方便监控大模型的加载过程 |
 | **类型** | bool |
 | **默认值** | `True` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

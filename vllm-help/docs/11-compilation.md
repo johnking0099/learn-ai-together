@@ -13,7 +13,7 @@
 | **说明** | 完整的编译配置，以 JSON 格式传入。支持快捷方式语法 `-O.mode=3` 直接设置编译模式级别。不同的 mode 级别对应不同的编译优化强度：级别越高优化越激进，启动时间越长但推理越快 |
 | **类型** | string |
 | **默认值** | 默认配置 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -30,7 +30,7 @@ vllm serve meta-llama/Llama-3.1-8B -O.mode=3
 | **说明** | CUDA Graph 捕获的 batch 大小列表。CUDA Graph 会预先录制特定 batch 大小的 GPU 计算图，推理时直接回放以减少 CPU 开销。只有列表中的 batch 大小会使用 CUDA Graph 加速，其他大小回退到普通执行 |
 | **类型** | string |
 | **默认值** | 自动推断 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -47,7 +47,7 @@ vllm serve meta-llama/Llama-3.1-8B --cudagraph-capture-sizes 1,2,4,8,16,32
 | **说明** | CUDA Graph 最大捕获大小。限制 CUDA Graph 可以捕获的最大 batch 大小。超过此大小的 batch 将不使用 CUDA Graph 加速，回退到普通的 eager 执行。增大此值会消耗更多 GPU 显存用于存储捕获的计算图 |
 | **类型** | int |
 | **默认值** | 自动推断 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -64,7 +64,7 @@ vllm serve meta-llama/Llama-3.1-8B --max-cudagraph-capture-size 64
 | **说明** | [已废弃] CUDA Graph 捕获大小列表。此参数已被 `--cudagraph-capture-sizes` 替代，将在未来版本中移除。功能与 `--cudagraph-capture-sizes` 相同 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

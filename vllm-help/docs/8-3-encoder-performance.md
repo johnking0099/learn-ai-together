@@ -14,7 +14,7 @@
 | **类型** | enum |
 | **可选值** | `weights` / `data` |
 | **默认值** | `weights` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve Qwen/Qwen2.5-VL-7B-Instruct -tp 4 --mm-encoder-tp-mode data
 | **说明** | 多模态编码器使用的 attention 计算后端。可以指定特定的高性能 attention 实现（如 `FLASH_ATTN`），以优化视觉编码器的推理速度。留空则由引擎自动选择最优后端 |
 | **类型** | string |
 | **默认值** | None（自动选择） |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve Qwen/Qwen2.5-VL-7B-Instruct --mm-encoder-attn-backend FLASH_ATTN
 | **说明** | 传递给模型多模态 processor 的额外关键字参数，以 JSON 字典形式指定。这些参数直接传递给 HuggingFace 的 processor（如 `AutoProcessor`），可以用于控制图片预处理的具体行为，例如裁剪策略、分辨率设置等 |
 | **类型** | string (JSON dict) |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve Qwen/Qwen2.5-VL-7B-Instruct --mm-processor-kwargs '{"min_pixels": 256
 | **说明** | 跳过多模态内存 profiling 阶段。vLLM 启动时会对多模态输入进行内存使用分析以合理分配资源，此过程可能较耗时。开启此选项可以加速服务启动，但用户需要自行确保显存足够处理多模态输入，否则可能在运行时出现 OOM |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve Qwen/Qwen2.5-VL-7B-Instruct --skip-mm-profiling
 | **说明** | 视频 token 剪枝率，取值范围 [0, 1)。通过丢弃一部分视频 token 来减少计算量和显存占用。例如设置为 0.5 表示丢弃约 50% 的视频 token。较高的剪枝率可以显著降低视频推理的资源消耗，但可能影响模型对视频内容的理解精度 |
 | **类型** | float |
 | **默认值** | None（不剪枝） |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

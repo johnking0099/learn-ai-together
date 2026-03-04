@@ -13,7 +13,7 @@
 | **说明** | 流式输出的 token 缓冲大小。控制每次向客户端推送前累积多少个 token。设为 1 表示逐 token 发送，用户体验最流畅但网络开销最大；设为更大的值可以减少 SSE 事件数量从而降低网络开销，但用户感知到的响应会有轻微延迟 |
 | **类型** | int |
 | **默认值** | 1 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -30,7 +30,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --stream-interval 3
 | **说明** | 启用异步调度。在 GPU 执行当前 batch 的前向传播时，CPU 同时进行下一个 batch 的调度决策，减少 GPU 空闲等待时间，从而提升整体延迟和吞吐量表现 |
 | **类型** | bool |
 | **默认值** | False |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -47,7 +47,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --async-scheduling
 | **说明** | 投机解码（Speculative Decoding）预留的 slot 数量。投机解码使用小模型提前预测多个 token，再由大模型验证。此参数决定了每步预留多少个位置用于投机预测。设为 0 表示不使用投机解码 |
 | **类型** | int |
 | **默认值** | 0 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -64,7 +64,7 @@ vllm serve meta-llama/Llama-3.1-70B-Instruct --num-lookahead-slots 5 --speculati
 | **说明** | 自定义调度器类的完整类路径。允许用户使用自己实现的调度算法替代 vLLM 默认调度器，适合需要特殊调度逻辑（如按租户隔离、按模型能力分流等）的高级场景 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -81,7 +81,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --scheduler-cls "my_package.custom_s
 | **说明** | 禁用混合 KV Cache 管理器。默认情况下 vLLM 会根据不同 attention 层的特性（如 GQA、MQA 等）分配不同大小的 KV Cache。启用此选项后，所有 attention 层将分配相同大小的 KV Cache，简化内存管理但可能浪费显存 |
 | **类型** | bool |
 | **默认值** | False |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

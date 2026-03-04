@@ -13,7 +13,7 @@
 | **说明** | 自定义 chat template 的文件路径或 Jinja2 模板字符串。Chat template 控制模型如何理解和格式化多轮对话（system/user/assistant 角色的拼接方式）。大多数模型自带 chat template，仅在需要自定义对话格式时才需要设置 |
 | **类型** | string |
 | **默认值** | None（使用模型自带） |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve --chat-template /path/to/my_template.jinja
 | **类型** | enum |
 | **可选值** | `auto` / `string` / `openai` |
 | **默认值** | `auto` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve --chat-template-content-format openai
 | **说明** | 启用模型自动选择工具的能力（Function Calling）。开启后，模型可以根据用户请求自动决定是否调用工具以及调用哪个工具。需要配合 `--tool-call-parser` 指定解析器 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve --enable-auto-tool-choice --tool-call-parser hermes
 | **说明** | 指定工具调用的解析器。不同模型使用不同的工具调用格式，需要匹配对应的解析器。常见解析器包括 `hermes`（通用）、`llama3_json`（Llama 3）、`mistral`（Mistral）、`qwen3_coder`（Qwen3）等 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 平台默认，用户可改 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve --enable-auto-tool-choice --tool-call-parser llama3_json
 | **说明** | 自定义工具调用解析器的插件文件路径。当内置解析器不满足需求时，可以编写自定义解析器插件并通过此参数加载 |
 | **类型** | string |
 | **默认值** | 空 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -99,7 +99,7 @@ vllm serve --enable-auto-tool-choice --tool-call-parser custom --tool-parser-plu
 | **说明** | 外部工具服务器的地址列表（格式为 host:port）。vLLM 可以连接外部工具服务器，自动获取可用的工具定义，使模型能够调用这些远程工具 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -116,7 +116,7 @@ vllm serve --enable-auto-tool-choice --tool-call-parser hermes --tool-server "lo
 | **说明** | 当 API 请求中 `tool_choice` 设为 `none` 时，是否从发送给模型的 prompt 中排除工具定义。启用后可以减少 token 消耗，避免模型在不需要工具时仍受到工具定义的干扰 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -133,7 +133,7 @@ vllm serve --enable-auto-tool-choice --tool-call-parser hermes --exclude-tools-w
 | **说明** | 是否信任并使用 API 请求中携带的自定义 chat template。启用后，客户端可以在请求中动态指定 chat template。此选项存在安全风险，恶意用户可能通过注入恶意模板执行不安全操作 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

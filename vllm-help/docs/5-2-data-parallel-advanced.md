@@ -13,7 +13,7 @@
 | **说明** | 本节点上的数据并行副本数。在多节点数据并行部署中，指定当前物理节点上运行多少个模型副本。如果不设置，默认将所有副本分配到本节点。适用于异构集群中不同节点承载不同数量副本的场景 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -30,7 +30,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 数据并行集群头节点（rank 0）的 IP 地址。在多节点数据并行部署中，所有节点需要知道头节点地址以建立通信。仅在多节点部署时需要设置 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **类型** | enum |
 | **可选值** | `mp` / `ray` |
 | **默认值** | `mp` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 当前实例在数据并行集群中的 rank 编号（从 0 开始）。在多节点数据并行部署中，每个节点需要分配唯一的 rank 标识，头节点通常为 rank 0 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 数据并行 RPC 通信端口。用于数据并行副本之间的远程过程调用通信。在多节点部署时需确保此端口在所有节点间可达且未被占用 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -99,7 +99,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 次要节点（非头节点）的起始 rank 编号。用于在从节点上批量启动多个数据并行副本时，指定副本 rank 编号的起始值 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -116,7 +116,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 8 --data-parall
 | **说明** | 启用外部负载均衡器模式。开启后，vLLM 不进行内部的请求分发，而是依赖外部负载均衡器（如 Nginx、HAProxy 或 Kubernetes Service）将请求分发到不同的数据并行副本 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -133,7 +133,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 启用混合负载均衡模式。结合 vLLM 内部负载感知调度和外部负载均衡的优点，在保持外部流量入口的同时，利用 vLLM 内部的队列状态信息进行更智能的请求分配 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -150,7 +150,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --data-parallel-size 4 --data-parall
 | **说明** | 数据并行同步时使用 Gloo 后端替代 NCCL。NCCL 是 NVIDIA 官方的 GPU 集合通信库，性能更好；Gloo 是 CPU 端的通信库，兼容性更强。在某些网络环境或非 NVIDIA GPU 场景下，可能需要切换到 Gloo |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash

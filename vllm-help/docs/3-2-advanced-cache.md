@@ -13,7 +13,7 @@
 | **说明** | 手动指定每张 GPU 上 KV Cache 占用的内存大小（字节）。相比 `--gpu-memory-utilization` 的百分比方式，此参数提供了更精细的绝对值控制，适用于需要精确管理显存分配的场景 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --kv-cache-memory-bytes 8589934592
 | **类型** | enum |
 | **可选值** | `1` / `8` / `16` / `32` / `64` / `128` / `256` |
 | **默认值** | 自动推断 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --block-size 16
 | **说明** | 每张 GPU 对应的 CPU 交换空间大小（GiB）。当 GPU 显存中的 KV Cache 不足时，vLLM 会将暂时不活跃的请求的 KV Cache 交换到 CPU 内存中，待有空间后再换回 |
 | **类型** | float |
 | **默认值** | 4 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --swap-space 8
 | **说明** | 每张 GPU 卸载到 CPU 内存的空间大小（GiB）。相当于虚拟扩展 GPU 显存，将部分模型权重或 KV Cache 存放在 CPU 内存中。需要高速 CPU-GPU 互联（如 NVLink）才能获得较好性能 |
 | **类型** | float |
 | **默认值** | 0 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --cpu-offload-gb 4
 | **说明** | 手动覆盖 GPU KV Cache blocks 的数量。主要用于测试和调试目的，生产环境中一般不需要手动设置此值 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -99,7 +99,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --num-gpu-blocks-override 2048
 | **说明** | 当 KV Cache 使用 fp8 数据类型时，是否动态计算缩放因子（scaling factors）。启用后可以改善 fp8 KV Cache 的精度表现，但会增加少量计算开销 |
 | **类型** | bool |
 | **默认值** | False |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -117,7 +117,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --kv-cache-dtype fp8 --calculate-kv-
 | **类型** | enum |
 | **可选值** | `sha256` / `sha256_cbor` |
 | **默认值** | sha256 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

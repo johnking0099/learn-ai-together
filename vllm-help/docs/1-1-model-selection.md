@@ -13,7 +13,7 @@
 | **说明** | 要部署的模型标签，也可通过 config 文件指定。这是一个位置参数，可以直接写在 `vllm serve` 命令之后，无需加 `--` 前缀 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 普通用户 |
+| **暴露建议** | 基础配置 |
 
 **示例：**
 ```bash
@@ -30,7 +30,7 @@ vllm serve Qwen/Qwen3-0.6B
 | **说明** | 模型的 HuggingFace 名称或本地路径。这是最核心的参数——用户通过它指定想部署哪个模型。可以是 HuggingFace Hub 上的模型 ID（如 `meta-llama/Llama-3.1-70B-Instruct`），也可以是本地文件系统上的模型路径 |
 | **类型** | string |
 | **默认值** | `Qwen/Qwen3-0.6B` |
-| **暴露建议** | 普通用户 |
+| **暴露建议** | 基础配置 |
 
 **示例：**
 ```bash
@@ -47,7 +47,7 @@ vllm serve --model meta-llama/Llama-3.1-70B-Instruct
 | **说明** | API 中暴露的模型名称。用户调用 API 时用此名称引用模型。支持设置多个别名，方便业务区分不同部署 |
 | **类型** | string |
 | **默认值** | 与 `--model` 相同 |
-| **暴露建议** | 普通用户 |
+| **暴露建议** | 基础配置 |
 
 **示例：**
 ```bash
@@ -64,7 +64,7 @@ vllm serve --model meta-llama/Llama-3.1-70B-Instruct --served-model-name my-llam
 | **说明** | 模型的具体版本（branch/tag/commit id）。用于锁定特定版本避免意外更新，确保生产环境中模型行为的一致性 |
 | **类型** | string |
 | **默认值** | None（使用默认版本） |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -81,7 +81,7 @@ vllm serve --model Qwen/Qwen3-0.6B --revision v1.0
 | **说明** | 自定义 tokenizer 的名称或路径。大多数情况下无需设置，使用模型自带的即可。仅在需要替换默认 tokenizer 时使用 |
 | **类型** | string |
 | **默认值** | 与 model 相同 |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -98,7 +98,7 @@ vllm serve --model meta-llama/Llama-3.1-70B-Instruct --tokenizer /path/to/custom
 | **说明** | Tokenizer 的版本号。与 `--revision` 类似，但专门用于锁定 tokenizer 的版本 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -116,7 +116,7 @@ vllm serve --model Qwen/Qwen3-0.6B --tokenizer-revision abc123
 | **类型** | enum |
 | **可选值** | `auto` / `slow` / `mistral` / `custom` |
 | **默认值** | `auto` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -133,7 +133,7 @@ vllm serve --model mistralai/Mistral-7B-Instruct-v0.3 --tokenizer-mode mistral
 | **说明** | HuggingFace 访问令牌，用于下载需要授权的模型（如 Llama 系列）。涉及凭证安全，应由平台统一管理（如通过 Secret 注入），不应让用户在 UI 中输入 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 基础配置 |
 
 **示例：**
 ```bash

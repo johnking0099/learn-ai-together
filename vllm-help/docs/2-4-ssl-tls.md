@@ -13,7 +13,7 @@
 | **说明** | SSL/TLS 证书文件的路径（PEM 格式）。该证书用于向客户端证明服务器身份，并建立加密连接。通常为 CA 签发的证书或自签名证书 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -30,7 +30,7 @@ vllm serve --ssl-certfile /etc/ssl/certs/vllm.pem --ssl-keyfile /etc/ssl/private
 | **说明** | SSL/TLS 私钥文件的路径（PEM 格式）。私钥与证书配对使用，用于加密通信。私钥文件应严格保护，仅允许服务进程读取 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -47,7 +47,7 @@ vllm serve --ssl-certfile /etc/ssl/certs/vllm.pem --ssl-keyfile /etc/ssl/private
 | **说明** | CA（证书颁发机构）证书文件路径。用于验证客户端证书的信任链。在双向 TLS（mTLS）场景中，服务器通过此 CA 证书验证客户端身份 |
 | **类型** | string |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -64,7 +64,7 @@ vllm serve --ssl-certfile /etc/ssl/certs/vllm.pem --ssl-keyfile /etc/ssl/private
 | **说明** | 客户端证书验证要求的级别。`0` 表示不要求客户端证书（单向 TLS），`1` 表示可选验证（客户端可以不提供证书），`2` 表示必须提供有效客户端证书（双向 TLS / mTLS） |
 | **类型** | int |
 | **默认值** | 0 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash
@@ -81,7 +81,7 @@ vllm serve --ssl-certfile /etc/ssl/certs/vllm.pem --ssl-keyfile /etc/ssl/private
 | **说明** | 启用 SSL 证书文件的自动刷新功能。当证书文件发生变更时（例如证书续期），服务会自动加载新证书，无需重启。适用于使用自动证书管理工具（如 cert-manager）的场景 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台决定 |
 
 **示例：**
 ```bash

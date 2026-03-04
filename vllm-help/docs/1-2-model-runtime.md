@@ -13,7 +13,7 @@
 | **说明** | 模型上下文长度（prompt + output 的总 token 数）。这是用户最关心的参数之一：它决定了模型能处理多长的输入+输出。支持 `1k`/`2M` 等可读格式。设置过大会增加显存消耗，设置过小则限制模型的处理能力 |
 | **类型** | int |
 | **默认值** | 自动从模型配置推导 |
-| **暴露建议** | 普通用户 |
+| **暴露建议** | 平台默认，用户可改 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve --model Qwen/Qwen3-0.6B --max-model-len 8192
 | **类型** | enum |
 | **可选值** | `auto` / `float16` / `bfloat16` / `float32` |
 | **默认值** | `auto` |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 平台默认，用户可改 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve --model meta-llama/Llama-3.1-70B-Instruct --dtype bfloat16
 | **说明** | 模型量化方式。量化可以大幅减少显存占用（50% 甚至更多），但会轻微降低精度。常见方式有 AWQ、GPTQ、FP8 等。不同量化方式在速度和精度之间有不同的权衡 |
 | **类型** | string |
 | **默认值** | None（不量化） |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -65,7 +65,7 @@ vllm serve --model Qwen/Qwen3-0.6B -q awq
 | **说明** | 随机种子，用于保证结果可复现。设置相同的种子后，相同的输入会产生相同的输出。V1 版本默认为 0 |
 | **类型** | int |
 | **默认值** | None |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -82,7 +82,7 @@ vllm serve --model Qwen/Qwen3-0.6B --seed 42
 | **说明** | 是否强制使用 eager 模式（禁用 CUDA Graph）。CUDA Graph 通过预编译计算图来加速推理，但在调试时可能隐藏错误。启用 eager 模式后推理速度会降低，但更便于调试 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -99,7 +99,7 @@ vllm serve --model Qwen/Qwen3-0.6B --enforce-eager
 | **说明** | 是否信任远程代码。某些模型需要执行 HuggingFace 上的自定义代码才能加载（如自定义 attention 实现）。启用此选项有安全隐患，平台应根据模型来源策略统一决定 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 平台默认，用户可改 |
 
 **示例：**
 ```bash
@@ -117,7 +117,7 @@ vllm serve --model THUDM/chatglm3-6b --trust-remote-code
 | **类型** | enum |
 | **可选值** | `auto` / `vllm` / `transformers` / `terratorch` |
 | **默认值** | `auto` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -135,7 +135,7 @@ vllm serve --model Qwen/Qwen3-0.6B --model-impl transformers
 | **类型** | enum |
 | **可选值** | `auto` / `generate` / `pooling` / `draft` |
 | **默认值** | `auto` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -153,7 +153,7 @@ vllm serve --model BAAI/bge-large-en-v1.5 --runner pooling
 | **类型** | enum |
 | **可选值** | `auto` / `hf` / `mistral` |
 | **默认值** | `auto` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

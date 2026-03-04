@@ -13,7 +13,7 @@ Expert Parallelism 专用于 Mixture-of-Experts (MoE) 模型（如 Mixtral、Dee
 | **说明** | 对 MoE 层启用专家并行替代张量并行。在 MoE 模型中，每一层包含多个"专家"子网络，常规张量并行会拆分每个专家，而专家并行则将不同的完整专家分配到不同 GPU 上。这对于专家数量远大于 GPU 数量的模型（如 DeepSeek-V3 有 256 个专家）特别有效 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve deepseek-ai/DeepSeek-V3 --tensor-parallel-size 8 --enable-expert-para
 | **类型** | enum |
 | **可选值** | `linear` / `round_robin` |
 | **默认值** | `linear` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -49,7 +49,7 @@ vllm serve mistralai/Mixtral-8x7B-Instruct-v0.1 --tensor-parallel-size 4 --enabl
 | **类型** | enum |
 | **可选值** | `naive` / `pplx` / `deepep_high_throughput` / `deepep_low_latency` |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -66,7 +66,7 @@ vllm serve deepseek-ai/DeepSeek-V3 --tensor-parallel-size 8 --enable-expert-para
 | **说明** | 启用 Expert Parallelism 负载均衡（EPLB）。在 MoE 模型中，不同专家的激活频率通常不均匀（某些"热门"专家被选中的概率更高），导致 GPU 间负载不均。EPLB 通过动态调整专家分配策略来平衡各 GPU 的计算负载 |
 | **类型** | bool |
 | **默认值** | `False` |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -83,7 +83,7 @@ vllm serve deepseek-ai/DeepSeek-V3 --tensor-parallel-size 8 --enable-expert-para
 | **说明** | Expert Parallelism 负载均衡的详细配置，以 JSON 格式传入。可以配置负载统计窗口、重平衡频率、专家复制策略等高级选项。需配合 `--enable-eplb` 使用 |
 | **类型** | string (JSON) |
 | **默认值** | 默认配置 |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

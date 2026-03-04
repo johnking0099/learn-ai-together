@@ -14,7 +14,7 @@ KV Offloading 允许将部分 KV Cache 从 GPU 显存卸载到其他存储介质
 | **类型** | enum |
 | **可选值** | `native` / `lmcache` |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --kv-offloading-backend native --kv-
 | **说明** | KV Cache 卸载缓冲区的大小（GiB）。决定了在 CPU 端或外部缓存中为 KV Cache 卸载预留多少存储空间。值越大，可卸载的 KV Cache 越多，从而支持更长的上下文或更多并发请求 |
 | **类型** | float |
 | **默认值** | None |
-| **暴露建议** | 平台管理 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash

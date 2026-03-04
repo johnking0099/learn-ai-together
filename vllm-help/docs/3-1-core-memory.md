@@ -13,7 +13,7 @@ KV Cache 是 LLM 推理中最关键的内存组件。这些核心参数决定了
 | **说明** | GPU 显存利用率，控制 vLLM 最多使用多大比例的 GPU 显存。值越高，可缓存的 KV Cache 越多，能同时服务的请求数越多，但也更容易触发 OOM。这是调节"能同时服务多少请求"的关键旋钮 |
 | **类型** | float |
 | **默认值** | 0.9 |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -31,7 +31,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --gpu-memory-utilization 0.85
 | **类型** | enum |
 | **可选值** | `auto` / `fp8` / `bfloat16` |
 | **默认值** | auto |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 高级配置 |
 
 **示例：**
 ```bash
@@ -48,7 +48,7 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct --kv-cache-dtype fp8
 | **说明** | 启用前缀缓存（Automatic Prefix Caching）。当多个请求共享相同的 system prompt 或前缀时，vLLM 会自动复用已计算的 KV Cache，避免重复计算，大幅提升吞吐量。在 V1 引擎中默认开启 |
 | **类型** | bool |
 | **默认值** | None（V1 默认开启） |
-| **暴露建议** | 高级用户 |
+| **暴露建议** | 平台默认，用户可改 |
 
 **示例：**
 ```bash
