@@ -9,6 +9,7 @@
 | [解决 Web Fetch 不可用](web-fetch-fix.md) | 中转 API 下 Web Fetch 失败的两个原因及修复方法 |
 | [解决 Web Search 不可用](web-search-fix.md) | 用 Tavily MCP 替代内置 Web Search 服务 |
 | [自定义 Status Line](statusline.md) | 配置终端底部状态栏，实时显示模型、token、费用等信息 |
+| [解决 Agent Team 模型不可用](agent-team-fix.md) | 中转 API 下 team member 模型解析失败的原因及 modelOverrides 修复方案 |
 
 ## 适用场景
 
@@ -29,7 +30,14 @@
   "env": {
     "ANTHROPIC_BASE_URL": "https://api.example.com/anthropic",
     "ANTHROPIC_AUTH_TOKEN": "your-api-key",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "pa/claude-haiku-4-5-20251001"
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "pa/claude-haiku-4-5-20251001",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "pa/claude-opus-4-6",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "pa/claude-sonnet-4-6"
+  },
+  "modelOverrides": {
+    "claude-opus-4-6": "pa/claude-opus-4-6",
+    "claude-sonnet-4-6": "pa/claude-sonnet-4-6",
+    "claude-haiku-4-5-20251001": "pa/claude-haiku-4-5-20251001"
   },
   "permissions": {
     "deny": ["WebSearch"]
