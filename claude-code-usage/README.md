@@ -10,6 +10,7 @@
 | [解决 Web Search 不可用](web-search-fix.md) | 用 Tavily MCP 替代内置 Web Search 服务 |
 | [自定义 Status Line](statusline.md) | 配置终端底部状态栏，实时显示模型、token、费用等信息 |
 | [解决 Agent Team 模型不可用](agent-team-fix.md) | 中转 API 下 team member 模型解析失败的原因及 modelOverrides 修复方案 |
+| [免费无限制的 Web Search](free-search.md) | 本地部署 SearXNG + MCP，替代有调用限制的付费搜索服务 |
 
 ## 适用场景
 
