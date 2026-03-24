@@ -1,6 +1,6 @@
 # LiteLLM Proxy — K8s/OrbStack 部署指南
 
-使用 LiteLLM Proxy 将 Claude 系列模型的 API 转发到本地，统一以 OpenAI 兼容接口对外暴露。本目录提供一键部署的 Kubernetes 配置文件，适用于 OrbStack 或标准 K8s 集群。
+使用 LiteLLM Proxy 将多种模型 API（Claude、GLM、Kimi 等）统一转发到本地，以 OpenAI 兼容接口对外暴露，同时支持 Anthropic `/v1/messages` 格式。本目录提供一键部署的 Kubernetes 配置文件，适用于 OrbStack 或标准 K8s 集群。
 
 ## 文件说明
 
@@ -33,6 +33,7 @@ ConfigMap 存储 LiteLLM 的运行时配置，挂载到容器内的 `/app/config
 | `litellm_params.model` | LiteLLM 内部路由格式：`{provider}/{前缀}/{model_id}` |
 | `litellm_params.api_base` | 上游 API 地址，`os.environ/` 前缀表示从环境变量读取 |
 | `litellm_params.api_key` | 上游 API 鉴权 token，同样从环境变量读取 |
+| `model_info.supports_reasoning` | OpenAI 兼容模型需设为 `false`，防止 LiteLLM 因 `thinking` 参数将请求路由到 Responses API |
 
 目前配置了以下模型：
 
@@ -44,6 +45,8 @@ ConfigMap 存储 LiteLLM 的运行时配置，挂载到容器内的 `/app/config
 **OpenAI 兼容系列**（`openai/` 前缀，走 OpenAI 兼容 API）：
 - `glm-5`
 - `kimi-k2-5`
+
+> **注意**：OpenAI 兼容模型需额外配置 `model_info.supports_reasoning: false`。原因：Claude Code 每次请求都会携带 `thinking: {type: "enabled"}` 参数，LiteLLM 检测到 `openai/` 前缀模型 + `thinking` 启用时，会强制路由到 OpenAI Responses API（`/v1/responses`），而非 `/v1/chat/completions`。上游服务若不支持 Responses API 则无响应。设置 `supports_reasoning: false` 可告知 LiteLLM 跳过此路由逻辑。
 
 #### general_settings — 通用设置
 
@@ -57,7 +60,7 @@ ConfigMap 存储 LiteLLM 的运行时配置，挂载到容器内的 `/app/config
 |------|--------|------|
 | `drop_params` | `true` | 自动丢弃上游不支持的参数，避免报错 |
 | `num_retries` | `2` | 请求失败时自动重试次数 |
-| `use_chat_completions_url_for_anthropic_messages` | `true` | 让 `openai/` 前缀的模型通过 `/v1/chat/completions` 转发，而非 OpenAI Responses API。**非 Anthropic 模型（如 GLM、Kimi）使用 `/v1/messages` 端点时必须开启**，否则响应内容为空 |
+| `use_chat_completions_url_for_anthropic_messages` | `true` | 让 `openai/` 前缀模型通过 `/v1/chat/completions` 而非 OpenAI Responses API 转发。与 `model_info.supports_reasoning: false` 配合使用，确保 OpenAI 兼容模型在 Claude Code 下正常响应 |
 
 ---
 
