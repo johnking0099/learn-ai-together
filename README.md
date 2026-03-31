@@ -6,3 +6,4 @@
 
 - [`basic-concepts/`](./basic-concepts/) — **AI 产品经理技术知识指南**：面向从事大模型/图像生成模型部署服务化的产品经理，涵盖模型基础、部署服务化、成本规划、产品设计判断力等 6 个主题
 - [`vllm-help/`](./vllm-help/) — **vLLM serve 参数参考手册**：基于 vLLM v0.11.2，按 12 个功能模块组织的完整参数文档，每个参数标注暴露建议
+- [`openclaw-guide/`](./openclaw-guide/) — **OpenClaw 部署指南**：在 macOS/Linux 上部署多 Gateway 实例、安装微信 Channel 插件及浏览器隔离配置等实操记录
