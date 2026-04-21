@@ -160,6 +160,7 @@ spec:
       labels:
         app: searxng
     spec:
+      enableServiceLinks: false
       containers:
         - name: searxng
           image: searxng/searxng
@@ -195,7 +196,7 @@ EOF
 | 资源 | 说明 |
 |------|------|
 | ConfigMap `searxng-config` | 存放 `settings.yml` 配置，与 Docker 方式内容一致 |
-| Deployment `searxng` | 运行 SearXNG 容器，将 ConfigMap 挂载到 `/etc/searxng/settings.yml` |
+| Deployment `searxng` | 运行 SearXNG 容器，将 ConfigMap 挂载到 `/etc/searxng/settings.yml`；`enableServiceLinks: false` 禁止 K8s 自动注入 Service 环境变量（否则 `SEARXNG_PORT` 会被注入为 `tcp://...` 格式导致启动失败） |
 | Service `searxng` | NodePort 类型，通过宿主机 **30888** 端口暴露服务 |
 
 等待 Pod 就绪后验证：
